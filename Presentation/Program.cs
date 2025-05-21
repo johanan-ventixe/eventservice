@@ -1,3 +1,4 @@
+using Business.Services;
 using Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
+builder.Services.AddScoped<IEventService, EventService>();
 
 var app = builder.Build();
 app.MapOpenApi();
